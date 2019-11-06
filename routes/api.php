@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('auth/register', 'AuthController@register');
+Route::post('auth/login', 'AuthController@login');
+
 Route::middleware('auth:api')->group(function ($e) {
 
     Route::get('alunos', 'AlunoController@index');
@@ -26,8 +29,6 @@ Route::middleware('auth:api')->group(function ($e) {
     Route::put('alunos/{aluno}/notas/{nota}', 'NotasController@update');
     Route::delete('alunos/{aluno}/notas/{nota}', 'NotasController@destroy');
 
-    Route::post('auth/register', 'AuthController@register');
-    Route::post('auth/login', 'AuthController@login');
     Route::post('auth/logout', 'AuthController@logout');
     Route::get('auth', 'AuthController@index');
 
