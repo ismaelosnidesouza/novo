@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
             [
                 'errors' => [
                     'status' => 401,
-                    'message' => 'Usuário não autenticado',
+                    'message' => 'Usuário não autenticado Handler',
                 ]
             ], 401
         );

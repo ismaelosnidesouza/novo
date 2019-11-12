@@ -29,6 +29,12 @@ Route::middleware('auth:api')->group(function ($e) {
     Route::put('alunos/{aluno}/notas/{nota}', 'NotasController@update');
     Route::delete('alunos/{aluno}/notas/{nota}', 'NotasController@destroy');
 
+    Route::get('departamentos', 'DepartamentoController@index');
+    Route::get('departamentos/{cd_departamento}', 'DepartamentoController@show');
+    Route::post('departamentos', 'DepartamentoController@store');
+    Route::put('departamentos/{cd_departamento}', 'DepartamentoController@update');
+    Route::delete('departamentos/{cd_departamento}', 'DepartamentoController@destroy');
+
     Route::post('auth/logout', 'AuthController@logout');
     Route::get('auth', 'AuthController@index');
 
