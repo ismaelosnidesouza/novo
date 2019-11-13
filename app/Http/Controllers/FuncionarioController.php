@@ -14,12 +14,14 @@ class FuncionarioController extends Controller
         return Departamento::with('funcionarios')->find($id);
     }
 
-    public function store(Request $request, $id)
+    //public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        if(!$departamento = Departamento::find($id))
-            return response()->json(['error' => 'Departamento informado não encontrado'], 404);
+        //if(!$departamento = Departamento::find($id))
+        //    return response()->json(['error' => 'Departamento informado não encontrado'], 404);
 
-        return $departamento->funcionarios()->create($request->all());
+        //return $departamento->funcionarios()->create($request->all());
+        return Funcionario::create($request->all());
     }
 
     public function show($dep_id, $func_id)

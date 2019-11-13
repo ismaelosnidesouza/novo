@@ -50,10 +50,10 @@ class Handler extends ExceptionHandler
         return response()->json(
             [
                 'errors' => [
-                    'status' => 401,
-                    'message' => 'Usuário não autenticado Handler',
+                    'status' => 500,
+                    'message' => $exception->getMessage(),
                 ]
-            ], 401
+            ], 500
         );
     }
 }
