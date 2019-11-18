@@ -36,8 +36,8 @@ Route::middleware('auth:api')->group(function ($e) {
     Route::put('departamentos/{cd_departamento}', 'DepartamentoController@update');
     Route::delete('departamentos/{cd_departamento}', 'DepartamentoController@destroy');
 
-    //Route::post('departamentos/{cd_departamento}/funcionarios', 'FuncionarioController@store');
-    Route::post('funcionarios', 'FuncionarioController@store');
+    Route::post('departamentos/{cd_departamento}/funcionarios', 'FuncionarioController@store');
+    //Route::post('funcionarios', 'FuncionarioController@store');
     Route::get('departamentos/{cd_departamento}/funcionarios', 'FuncionarioController@index');
     Route::get('departamentos/{cd_departamento}/funcionarios/{cd_funcionario}', 'FuncionarioController@show');
     Route::put('departamentos/{cd_departamento}/funcionarios/{cd_funcionario}', 'FuncionarioController@update');
