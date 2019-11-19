@@ -39,9 +39,9 @@ $(document).ready(function () {
             type: "get",
             data: "selectDep=true"
         });
-    
-        request.done(function (response, textStatus, jqXHR) {            
-            
+
+        request.done(function (response, textStatus, jqXHR) {
+
             console.log("Get Depart. Executed!");
 
             var row = '<tr>' +
@@ -62,7 +62,7 @@ $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
         });
-    
+
         request.fail(function (jqXHR, textStatus, errorThrown) {
             console.error("The following error occurred: " + textStatus, errorThrown);
         });
@@ -151,7 +151,7 @@ $(document).ready(function () {
     $(document).on("click", ".edit", function () {
 
         event.preventDefault();
-        
+
         var parentTr = $(this).parents("tr")
         var cd_funcionario = parentTr.find('td:first-child').text();
 
@@ -170,7 +170,7 @@ $(document).ready(function () {
         request.fail(function (jqXHR, textStatus, errorThrown) {
             console.error("The following error occurred: " + textStatus, errorThrown);
         });
-        
+
         $(".add-new").attr("disabled", "disabled");
 
     });

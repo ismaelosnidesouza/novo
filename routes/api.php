@@ -17,6 +17,7 @@ Route::post('auth/login', 'AuthController@login');
 
 Route::middleware('auth:api')->group(function ($e) {
 
+    /*
     Route::get('alunos', 'AlunoController@index');
     Route::get('alunos/{aluno}', 'AlunoController@show');
     Route::post('alunos', 'AlunoController@store');
@@ -28,7 +29,7 @@ Route::middleware('auth:api')->group(function ($e) {
     Route::get('alunos/{aluno}/notas/{nota}', 'NotasController@show');
     Route::put('alunos/{aluno}/notas/{nota}', 'NotasController@update');
     Route::delete('alunos/{aluno}/notas/{nota}', 'NotasController@destroy');
-
+    */
 
     Route::get('departamentos', 'DepartamentoController@index');
     Route::post('departamentos', 'DepartamentoController@store');
@@ -37,11 +38,9 @@ Route::middleware('auth:api')->group(function ($e) {
     Route::delete('departamentos/{cd_departamento}', 'DepartamentoController@destroy');
 
     Route::post('departamentos/{cd_departamento}/funcionarios', 'FuncionarioController@store');
-    //Route::post('funcionarios', 'FuncionarioController@store');
     Route::get('departamentos/{cd_departamento}/funcionarios', 'FuncionarioController@index');
     Route::get('departamentos/{cd_departamento}/funcionarios/{cd_funcionario}', 'FuncionarioController@show');
     Route::put('departamentos/{cd_departamento}/funcionarios/{cd_funcionario}', 'FuncionarioController@update');
-    //Route::delete('departamentos/{cd_departamento}/funcionarios/{cd_funcionario}', 'FuncionarioController@destroy');
     Route::delete('funcionarios/{cd_funcionario}', 'FuncionarioController@destroy');
 
     Route::post('auth/logout', 'AuthController@logout');
