@@ -1,6 +1,18 @@
 $(document).ready(function () {
 
+    checkCookie();
+
+    $(document).keydown(function () {
+        checkCookie();
+    });
+
+    $(document).click(function () {
+        checkCookie();
+    });
+
     var request;
+    var url = new URL(window.location.href);
+    var cd_departamento = url.searchParams.get("cd_departamento");
 
     $('[data-toggle="tooltip"]').tooltip();
     var actions = $("table td:last-child").html();
@@ -13,20 +25,38 @@ $(document).ready(function () {
     }
 
     request = $.ajax({
-        url: "./funcionario_controller.php",
+        url: "./api/departamentos/"+cd_departamento+"/funcionarios",
         type: "get",
-        data: "selectAll=true"
+        headers: {"Authorization": getCookie("token")}
     });
 
     request.done(function (response, textStatus, jqXHR) {
-        $("table").append(response);
+
         console.log("Get All Executed!");
+
+        response.forEach(function(funcionario){
+
+            var row = '<tr>' +
+                            '<td>' + funcionario.cd_funcionario + '</td>' +
+                            '<td>' + funcionario.nm_funcionario + '</td>' +
+                            '<td>' + funcionario.sexo + '</td>' +
+                            '<td>R$' + funcionario.salario + '</td>' +
+                            '<td>' + funcionario.dt_nascimento + '</td>' +
+                            '<td>' + 'funcionario.nm_departamento' + '</td>' +
+                            '<td>' + actions + '</td>' +
+                      '</tr>';
+
+            $("table").append(row);
+
+        });
+
     });
 
     request.fail(function (jqXHR, textStatus, errorThrown) {
-        console.error("The following error occurred: " + textStatus, errorThrown);
+        console.error(jqXHR.responseJSON.errors.message);
     });
 
+    /*
     // Append table with add row form on add new button click
     $(".add-new").click(function () {
 
@@ -198,5 +228,6 @@ $(document).ready(function () {
         $(this).parents("tr").remove();
         $(".add-new").removeAttr("disabled");
     });
+    */
 
 });

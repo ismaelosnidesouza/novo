@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./checkLogin.js"></script>
-    <!--<script src="./funcionario.js"></script>-->
+    <script src="./maintainToken.js"></script>
+    <script src="./funcionario.js"></script>
 
     <style>
 
@@ -128,7 +128,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="/departamento">Departamento</a></li>
-                <li class="active"><a href="#">Funcionário</a></li>
+                <!--<li class="active"><a href="#">Funcionário</a></li>-->
             </ul>
         </div>
     </nav>

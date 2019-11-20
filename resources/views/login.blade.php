@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="./maintainToken.js" type="text/javascript"></script>
+        <script src="./login.js"></script>
     </head>
     <body>
         <div class="container">
@@ -19,16 +21,15 @@
                 <aside class="col-sm-4">
                     <div class="cardr">
                         <article class="card-body">
-	                        <h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
+	                        <h4 class="card-title text-center mb-4 mt-1">Entrar</h4>
 	                        <hr>
-    	                    <!--<p class="text-success text-center">Some message goes here</p>-->
 	                        <form>
     	                        <div class = "form-group">
 	                                <div class = "input-group">
 		                                <div class = "input-group-prepend">
 		                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		                                </div>
-    		                            <input class="form-control" placeholder="Email" type="email" required>
+    		                            <input id="email" class="form-control" placeholder="Email" type="email" required>
 	                                </div>
 	                            </div>
 	                            <div class="form-group">
@@ -36,9 +37,10 @@
 		                                <div class="input-group-prepend">
 		                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		                                </div>
-    	                                <input class="form-control" placeholder="******" type="password" required>
+    	                                <input id="password" class="form-control" placeholder="******" type="password" required>
 	                                </div>
-	                            </div>
+                                </div>
+                                <p id="errorMsg" class="text-danger text-center"></p>
 	                            <div class="form-group">
 	                                <button type="submit" class="btn btn-primary btn-block">Login</button>
 	                            </div>
