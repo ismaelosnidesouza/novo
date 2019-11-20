@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Funcionario extends Model
 {
     protected $primaryKey = 'cd_funcionario';
-    protected $fillable = ['nm_funcionario', 'sexo', 'salario', 'dt_nascimento', 'cd_departamento'];
+    protected $fillable = ['cd_departamento', 'nm_funcionario', 'sexo', 'salario', 'dt_nascimento'];
 
     public function departamento()
     {

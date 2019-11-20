@@ -22,3 +22,7 @@ Route::get('/departamento', function () {
 Route::get('/funcionario', function () {
     return view('funcionario');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});

@@ -15,11 +15,11 @@ class CreateFuncionariosTable extends Migration
     {
         Schema::create('funcionarios', function (Blueprint $table) {
             $table->bigIncrements('cd_funcionario');
+            $table->unsignedBigInteger('cd_departamento');
             $table->string('nm_funcionario');
             $table->char('sexo', 1);
             $table->float('salario');
             $table->date('dt_nascimento');
-            $table->unsignedBigInteger('cd_departamento');
             $table->timestamps();
 
             $table->foreign('cd_departamento')->references('cd_departamento')->on('departamentos')->onDelete('CASCADE')->onUpdate('CASCADE');

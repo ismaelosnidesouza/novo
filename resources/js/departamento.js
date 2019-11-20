@@ -122,7 +122,7 @@ $(document).ready(function () {
     $(document).on("click", ".edit", function () {
 
         event.preventDefault();
-        
+
         var parentTr = $(this).parents("tr")
         var cd_departamento = parentTr.find('td:first-child').text();
 
@@ -141,7 +141,7 @@ $(document).ready(function () {
         request.fail(function (jqXHR, textStatus, errorThrown) {
             console.error("The following error occurred: " + textStatus, errorThrown);
         });
-        
+
         $(".add-new").attr("disabled", "disabled");
 
     });
