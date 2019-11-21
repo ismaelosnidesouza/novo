@@ -160,8 +160,8 @@ $(document).ready(function () {
             console.log("Get by Id Executed!");
 
             var row = '<td>' + response.cd_departamento + '</td>' +
-                '<td><input type="text" class="form-control" name="nm_departamento" id="nm_departamento" value="' + response.nm_departamento + '"></td>' +
-                '<td>' + actions + '</td>';
+                      '<td><input type="text" class="form-control" name="nm_departamento" id="nm_departamento" value="' + response.nm_departamento + '"></td>' +
+                      '<td>' + actions + '</td>';
 
             parentTr.html(row);
 

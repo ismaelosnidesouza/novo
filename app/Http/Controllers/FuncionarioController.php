@@ -11,17 +11,18 @@ class FuncionarioController extends Controller
 
     public function index($id)
     {
-        return Departamento::with('funcionarios')->find($id);
+        if(!$departamento = Departamento::with('funcionarios')->find($id))
+            return response()->json(['error' => 'Departamento informado não encontrado'], 404);
+
+        return $departamento;
     }
 
-    //public function store(Request $request)
     public function store(Request $request, $id)
     {
         if(!$departamento = Departamento::find($id))
             return response()->json(['error' => 'Departamento informado não encontrado'], 404);
 
         return $departamento->funcionarios()->create($request->all());
-        //return Funcionario::create($request->all());
     }
 
     public function show($dep_id, $func_id)
@@ -46,9 +47,12 @@ class FuncionarioController extends Controller
         return $funcionario;
     }
 
-    public function destroy($id)
+    public function destroy($dep_id, $func_id)
     {
-        if(!$funcionario = Funcionario::find($id))
+        if(!$departamento = Departamento::find($dep_id))
+            return response()->json(['error' => 'Departamento informado não encontrado'], 404);
+
+        if(!$funcionario = $departamento->funcionarios()->find($func_id))
             return response()->json(['error' => 'Funcionario informado não encontrado'], 404);
 
         $funcionario->delete();

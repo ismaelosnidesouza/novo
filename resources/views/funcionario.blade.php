@@ -137,11 +137,15 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-8">
-                        <h2><b>Detalhes</b> Funcionário</h2>
+                        <h4 id="title"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h2><b>Detalhes </b> Funcionários</h2>
                     </div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Adicionar
-                            Novo</button>
+                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Adicionar Novo</button>
                     </div>
                 </div>
             </div>
@@ -149,11 +153,10 @@
                 <thead>
                     <tr>
                         <th style="width:5%;">Código</th>
-                        <th style="width:24%;">Nome</th>
+                        <th style="width:48%;">Nome</th>
                         <th style="width:12%;">Sexo</th>
                         <th style="width:11%;">Salario</th>
                         <th style="width:16%;">Data Nascimento</th>
-                        <th style="width:24%;">Departamento</th>
                         <th style="width:8%;">Ações</th>
                     </tr>
                 </thead>

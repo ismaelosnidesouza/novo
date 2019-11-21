@@ -11,7 +11,7 @@ class Departamento extends Model
 
     public function funcionarios()
     {
-        return $this->hasMany('App\Funcionario');
+        return $this->hasMany('App\Funcionario', 'cd_departamento');
     }
 
 }
