@@ -164,8 +164,6 @@ $(document).ready(function () {
 
                 parentTr.html(row);
 
-                //parentTr.find(".add, .edit").toggle();
-
             });
 
             request.fail(function (jqXHR, textStatus, errorThrown) {
