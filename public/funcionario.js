@@ -35,14 +35,24 @@ $(document).ready(function () {
 
         $('#title').html('<b>' + response.nm_departamento + '</b>');
 
+        var format = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2,
+        });
+
         response.funcionarios.forEach(function (funcionario) {
+
+            var salarioOut = format.format(funcionario.salario);
+            var sexoOut = funcionario.sexo == 'M' ? 'Masculino' : 'Feminino';
+            var dt_nascOut = formatDate(funcionario.dt_nascimento);
 
             var row = '<tr>' +
                 '<td>' + funcionario.cd_funcionario + '</td>' +
                 '<td>' + funcionario.nm_funcionario + '</td>' +
-                '<td>' + funcionario.sexo + '</td>' +
-                '<td>R$' + funcionario.salario + '</td>' +
-                '<td>' + funcionario.dt_nascimento + '</td>' +
+                '<td>' + sexoOut + '</td>' +
+                '<td>' + salarioOut + '</td>' +
+                '<td>' + dt_nascOut + '</td>' +
                 '<td>' + actions + '</td>' +
                 '</tr>';
 
@@ -70,7 +80,7 @@ $(document).ready(function () {
             '<option value="M">Masculino</option>' +
             '<option value="F">Feminino</option>' +
             '</select></td>' +
-            '<td><input type="number" class="form-control" name="salario" id="salario"></td>' +
+            '<td><input type="number" class="form-control" name="salario" id="salario" max="999999" maxlength="6"></td>' +
             '<td><input type="date" class="form-control" name="dt_nascimento" id="dt_nascimento"></td>' +
             '<td>' + actions + '</td>' +
             '</tr>';
@@ -91,6 +101,7 @@ $(document).ready(function () {
         var empty = false;
         var parentTr = $(this).parents("tr");
         var input = parentTr.find('input');
+        var select = parentTr.find('select');
         var cd_funcionario = parentTr.find('td:first-child').text()
 
         input.each(function () {
@@ -110,7 +121,7 @@ $(document).ready(function () {
 
             var url;
             var type;
-            var serializedData = input.serialize();
+            var serializedData = input.serialize() + '&' + select.serialize();
 
             if (cd_funcionario) {
                 url = "./api/departamentos/" + cd_departamento + "/funcionarios/" + cd_funcionario;
@@ -121,6 +132,7 @@ $(document).ready(function () {
             }
 
             input.prop("disabled", true);
+            select.prop("disabled", true);
 
             request = $.ajax({
                 url: url,
@@ -133,29 +145,38 @@ $(document).ready(function () {
 
                 console.log("Post Executed!");
 
-                //var row = '<td>' + response.cd_departamento + '</td>' +
-                //        '<td>' + response.nm_departamento + '</td>' +
-                //        '<td>' + actions + '</td>';
+                var format = new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                    minimumFractionDigits: 2,
+                });
 
-                parentTr.html(response);
+                var salarioOut = format.format(response.salario);
+                var sexoOut = response.sexo == 'M' ? 'Masculino' : 'Feminino';
+                var dt_nascOut = formatDate(response.dt_nascimento);
+
+                var row = '<td>' + response.cd_funcionario + '</td>' +
+                    '<td>' + response.nm_funcionario + '</td>' +
+                    '<td>' + sexoOut + '</td>' +
+                    '<td>' + salarioOut + '</td>' +
+                    '<td>' + dt_nascOut + '</td>' +
+                    '<td>' + actions + '</td>';
+
+                parentTr.html(row);
+
+                //parentTr.find(".add, .edit").toggle();
 
             });
 
             request.fail(function (jqXHR, textStatus, errorThrown) {
-                console.error(jqXHR.responseJSON.error);
+                console.error(jqXHR.responseJSON.errors.message);
             });
 
-            request.always(function () {
-                $(this).parents("tr").find("input").prop("disabled", false);
-            });
-
-            $(this).parents("tr").find(".add, .edit").toggle();
+            input.prop("disabled", false);
+            select.prop("disabled", false);
             $(".add-new").removeAttr("disabled");
         }
     });
-
-
-
 
     // Edit row on edit button click
     $(document).on("click", ".edit", function () {
@@ -181,7 +202,7 @@ $(document).ready(function () {
                 '<option value="M">Masculino</option>' +
                 '<option value="F">Feminino</option>' +
                 '</select></td>' +
-                '<td><input type="number" class="form-control" name="salario" id="salario" value="' + response.funcionarios[0].salario + '"></td>' +
+                '<td><input type="number" class="form-control" name="salario" id="salario" maxlength="8" value="' + response.funcionarios[0].salario + '"></td>' +
                 '<td><input type="date" class="form-control" name="dt_nascimento" id="dt_nascimento" value="' + response.funcionarios[0].dt_nascimento + '"></td>' +
                 '<td>' + actions + '</td>';
 
@@ -231,3 +252,20 @@ $(document).ready(function () {
     });
 
 });
+
+function formatDate(date) {
+
+    var d = new Date(date);
+    var month = '' + (d.getMonth() + 1);
+    var day = '' + (d.getDate() + 1);
+    var year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [day, month, year].join('/');;
+
+}
